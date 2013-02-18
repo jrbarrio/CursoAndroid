@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/etiqueta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -13,20 +13,30 @@
         android:text="@string/hello_world"
         tools:context=".MainActivity" />
 
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
-
     <AnalogClock
-        android:id="@+id/analogClock1"
+        android:id="@+id/reloj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />
+
+    <Button
+        android:id="@+id/boton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/reloj"
+        android:layout_below="@+id/etiqueta"
+        android:layout_marginTop="34dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button1"
+        android:onClick="botonPulsado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/boton"
+        android:layout_alignRight="@+id/reloj"
+        android:text="Button" />
 
 </RelativeLayout>
