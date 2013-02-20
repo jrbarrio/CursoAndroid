@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.util.Log;
@@ -26,6 +27,11 @@ public class MainActivity extends Activity {
 		try {
 			InputStream in = res.openRawResource(R.raw.android);
 			in.close();
+			
+			AssetManager assets = getAssets();
+			InputStream in2 = assets.open("android.png");
+			in2.close();
+			
 		} catch (NotFoundException e) {
 			Log.e("MAinActivity", "Error. Recurso no encontrado.");
 		} catch (IOException e) {
