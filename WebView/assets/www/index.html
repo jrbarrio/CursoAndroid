@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+ <html>
+ <head>
+ <!--<meta charset="utf-8">-->
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Web App</title>
+  
+ <link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="jquery-1.5.min.js"></script>
+  
+ <script type="text/javascript" src="jquery.mobile-1.0rc2.min.js">
+</script>
+  
+ </head> 
+ <body> 
+  
+ <div data-role="page" id="page">
+     <div data-role="header">
+         <h1>Página 1</h1>
+     </div>
+     <div data-role="content">    
+         <ul data-role="listview">
+             <li><a href="#page2">Página 2</a></li>
+             <li><a href="#page3">Página 3</a></li>
+         </ul>        
+     </div>
+     <div data-role="footer">
+         <h4></h4>
+     </div>
+ </div>
+  
+ <div data-role="page" id="page2" data-title="Page 2" data-add-back-btn="true">
+     <div data-role="header">
+         <h1>Página</h1>
+     </div>
+     <div data-role="content">    
+        Contenido de la página        
+     </div>
+     <div data-role="footer">
+         <h4></h4>
+     </div>
+ </div>
+  
+ <div data-role="page" id="page3" data-title="Page 3" data-add-back-btn="true">
+     <div data-role="header" >
+         <h1>Otra página</h1>
+     </div>
+     <div data-role="content">    
+         mas contenido!        
+     </div>
+     <div data-role="footer">
+         <h4></h4>
+     </div>
+ </div>
+  
+ </body>
+ </html>
