@@ -1,6 +1,7 @@
 package com.atos.android.p17;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -39,12 +40,18 @@ public class Lienzo extends View {
 		//canvas.drawArc(new RectF(0, 0, getWidth(), getHeight()), 45, 30, true, brocha);
 		//canvas.drawText("Hola", 100, 100, brocha);
 		
-		brocha.setTypeface(Typeface.SERIF);
-		canvas.drawText("Hola Mundo", 0, 40, brocha);
-		brocha.setTypeface(Typeface.MONOSPACE);
-		canvas.drawText("Hola Mundo", 0, 80, brocha);
-		brocha.setTypeface(Typeface.SANS_SERIF);
-		canvas.drawText("Hola Mundo", 0, 120, brocha);
+//		brocha.setTypeface(Typeface.SERIF);
+//		canvas.drawText("Hola Mundo", 0, 40, brocha);
+//		brocha.setTypeface(Typeface.MONOSPACE);
+//		canvas.drawText("Hola Mundo", 0, 80, brocha);
+//		brocha.setTypeface(Typeface.SANS_SERIF);
+//		canvas.drawText("Hola Mundo", 0, 120, brocha);
+		
+		AssetManager assets = getContext().getAssets();
+		Typeface fuente = Typeface.createFromAsset(assets, "fuentes/E111VIVA.TTF");
+		brocha.setTypeface(fuente);
+		brocha.setTextSize(40);
+		canvas.drawText("Hola Mundo", 0, 100, brocha);
 	}
 	
 	public int getColorCirculo() {
