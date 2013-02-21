@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -30,11 +31,20 @@ public class Lienzo extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		canvas.drawARGB(255, 100, 50, 50);
+		//canvas.drawARGB(255, 100, 50, 50);
 		
 		Paint brocha = new Paint();
-		brocha.setColor(colorCirculo); 		
-		canvas.drawOval(new RectF(0, 0, getWidth(), getHeight()), brocha);
+		brocha.setColor(colorCirculo); 	
+		//canvas.drawOval(new RectF(0, 0, getWidth(), getHeight()), brocha);
+		//canvas.drawArc(new RectF(0, 0, getWidth(), getHeight()), 45, 30, true, brocha);
+		//canvas.drawText("Hola", 100, 100, brocha);
+		
+		brocha.setTypeface(Typeface.SERIF);
+		canvas.drawText("Hola Mundo", 0, 40, brocha);
+		brocha.setTypeface(Typeface.MONOSPACE);
+		canvas.drawText("Hola Mundo", 0, 80, brocha);
+		brocha.setTypeface(Typeface.SANS_SERIF);
+		canvas.drawText("Hola Mundo", 0, 120, brocha);
 	}
 	
 	public int getColorCirculo() {
