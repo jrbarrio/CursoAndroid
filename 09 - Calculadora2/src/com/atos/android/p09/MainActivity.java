@@ -13,13 +13,17 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	private List<String> pila = new ArrayList<String>();
-	private List<String> history = new ArrayList<String>();
+	private List<String> pila;
+	private List<String> history;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		pila = new ArrayList<String>();
+		history = new ArrayList<String>();
+		
 		setContentView(R.layout.activity_main);
 	}
 
