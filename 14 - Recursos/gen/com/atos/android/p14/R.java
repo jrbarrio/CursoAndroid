@@ -28,9 +28,9 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f0a0003;
-        public static final int etiqueta=0x7f0a0000;
+        public static final int etiqueta=0x7f0a0002;
         public static final int orientacion=0x7f0a0001;
-        public static final int spinner1=0x7f0a0002;
+        public static final int spinner1=0x7f0a0000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

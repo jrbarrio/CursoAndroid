@@ -1,8 +1,10 @@
 package com.atos.android.p09;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,7 +13,8 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	private Stack<String> pila = new Stack<String>();
+	private List<String> pila = new ArrayList<String>();
+	private List<String> history = new ArrayList<String>();
 	
 	
 	@Override
@@ -43,28 +46,36 @@ public class MainActivity extends Activity {
 		
 		if (pila.isEmpty()) {
 			if (!operadorPulsado.getText().toString().equals("=")) {
-				pila.push(pantalla.getText().toString());
-				pila.push(operadorPulsado.getText().toString());
+				pila.add(pantalla.getText().toString());
+				pila.add(operadorPulsado.getText().toString());
 				pantalla.setText("");
 			}			
 		} else {
-			if (operadorPulsado.getText().toString().equals("=")) {
-				String operando2 = pantalla.getText().toString();
-				String operadorAnterior = pila.pop();
-				String operando1 = pila.pop();
+			String operando1 = pila.get(0);
+			String operadorAnterior = pila.get(1);			
+			String operando2 = pantalla.getText().toString();
 				
-				int acumulado = 0;
-				if (operadorAnterior.equals("+")) {
-					acumulado = suma(Integer.parseInt(operando1), Integer.parseInt(operando2));
-				} else if (operadorAnterior.equals("-")) {
-					acumulado = resta(Integer.parseInt(operando1), Integer.parseInt(operando2));
-				} else if (operadorAnterior.equals("/")) {
-					acumulado = division(Integer.parseInt(operando1), Integer.parseInt(operando2));
-				} else if (operadorAnterior.equals("*")) {
-					acumulado = producto(Integer.parseInt(operando1), Integer.parseInt(operando2));
-				}
-				
-				pantalla.setText(Integer.toString(acumulado));
+			int resultado = 0;
+			if (operadorAnterior.equals("+")) {
+				resultado = suma(Integer.parseInt(operando1), Integer.parseInt(operando2));
+			} else if (operadorAnterior.equals("-")) {
+				resultado = resta(Integer.parseInt(operando1), Integer.parseInt(operando2));
+			} else if (operadorAnterior.equals("/")) {
+				resultado = division(Integer.parseInt(operando1), Integer.parseInt(operando2));
+			} else if (operadorAnterior.equals("*")) {
+				resultado = producto(Integer.parseInt(operando1), Integer.parseInt(operando2));
+			}
+			
+			String linea = operando1 + operadorAnterior + operando2 + "=" + resultado; 
+			history.add(linea);			
+			
+			if (operadorPulsado.getText().toString().equals("=")) {			
+				pantalla.setText(Integer.toString(resultado));
+			} else {
+				pila = new ArrayList<String>();
+				pila.add(Integer.toString(resultado));
+				pila.add(operadorPulsado.getText().toString());
+				pantalla.setText("");
 			}
 		}
 	}
@@ -85,4 +96,22 @@ public class MainActivity extends Activity {
 		return operado1 * operando2;
 	}
 
+	public void borrarHistorial(View v) {
+		history = new ArrayList<String>();
+	}
+	
+	public void mostrarHistorial(View v) {
+		Intent msg = new Intent(this, Historial.class);
+		StringBuffer historial = new StringBuffer();
+		
+		for (String linea : history) {
+			historial.append(linea);
+			historial.append("\n");
+		}		
+		
+		msg.putExtra("historial", historial.toString());
+		
+	
+		startActivity(msg);
+	}
 }
