@@ -1,5 +1,7 @@
 package com.atos.android.p21;
 
+import java.util.GregorianCalendar;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -11,10 +13,12 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -127,6 +131,12 @@ public class MainActivity extends Activity {
 					}
 				});
 		dialogo.show();
+	}
+	
+	public void mostrarNotificacion(View v) {
+		Toast t = Toast.makeText(this, "Error de E/S", Toast.LENGTH_SHORT);
+		t.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 20);
+		t.show();
 	}
 
 }
