@@ -133,6 +133,11 @@ public class MainActivity extends Activity {
 					public void onScanCompleted(String path, Uri uri) {						
 					}
 				});
+		
+		// Directorio privado externo
+		File f1 = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+		// Directorio provado cacge externo
+		File f2 = getExternalCacheDir();
 	}
 	
 	public void leerExterno(View v) {
