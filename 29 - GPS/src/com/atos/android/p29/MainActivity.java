@@ -4,8 +4,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.location.GpsSatellite;
-import android.location.GpsStatus;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.GpsStatus.Listener;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends Activity implements Listener, LocationListener {
@@ -48,32 +49,44 @@ public class MainActivity extends Activity implements Listener, LocationListener
 				500,
 				1,
 				this);
+	
+		try {
+			Geocoder gc = new Geocoder(this);
+			List<Address> direcciones = gc.getFromLocationName("calle de la Tortola 10, Spain", 1);
+			if (direcciones.size() > 0) {
+				Address addr = direcciones.get(0);
+				Log.i("", "Latitud: " + addr.getLatitude());
+				Log.i("", "Longitud: " + addr.getLongitude());
+			}
+		} catch (Exception e) {
+			
+		}
 	}
 
 	@Override
 	public void onGpsStatusChanged(int event) {
-		switch (event) {
-		case GpsStatus.GPS_EVENT_STARTED:
-			Log.i("", "GPS iniciado");
-			break;
-		case GpsStatus.GPS_EVENT_STOPPED:
-			Log.i("", "GPS detenido");
-			break;
-		case GpsStatus.GPS_EVENT_FIRST_FIX:
-			Log.i("", "Primer satelite encontrado");
-			break;
-		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-			Log.i("", "Cambios en la info de satelites");
-			break;
-		default:
-			break;
-		}
-		
-		GpsStatus status = locationManager.getGpsStatus(null);
-		Log.i("", "Satélites conocidos: " + status.getMaxSatellites());
-		for (GpsSatellite satelite : status.getSatellites()) {
-			Log.i("", "Azimuth: " + satelite.getAzimuth());
-		}
+//		switch (event) {
+//		case GpsStatus.GPS_EVENT_STARTED:
+//			Log.i("", "GPS iniciado");
+//			break;
+//		case GpsStatus.GPS_EVENT_STOPPED:
+//			Log.i("", "GPS detenido");
+//			break;
+//		case GpsStatus.GPS_EVENT_FIRST_FIX:
+//			Log.i("", "Primer satelite encontrado");
+//			break;
+//		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+//			Log.i("", "Cambios en la info de satelites");
+//			break;
+//		default:
+//			break;
+//		}
+//		
+//		GpsStatus status = locationManager.getGpsStatus(null);
+//		Log.i("", "Satélites conocidos: " + status.getMaxSatellites());
+//		for (GpsSatellite satelite : status.getSatellites()) {
+//			Log.i("", "Azimuth: " + satelite.getAzimuth());
+//		}
 	}
 
 	@Override
@@ -96,5 +109,21 @@ public class MainActivity extends Activity implements Listener, LocationListener
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void actualizarDireccion(View v) {
+		Geocoder gc = new Geocoder(this);
+		try {
+			List<Address> direcciones = gc.getFromLocation(
+					Float.parseFloat(latitud.getText().toString()), 
+					Float.parseFloat(longitud.getText().toString()), 
+					1);
+			
+			Address address = direcciones.get(0);
+			EditText direccion = (EditText) findViewById(R.id.direccion);
+			direccion.setText(address.getAddressLine(0));
+		} catch (Exception e) {
+			Log.e("", "Se ha producido un error al actualizar la direccion: " + e.getMessage());
+		} 
 	}
 }
