@@ -18,7 +18,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
-        android:apiKey="0dPaplATagQmW3AgL0r30egGcYUa881CtdY_JvA" >
+        android:apiKey="0bDUYQeFQ7tMbXS0R6V-RomSayHyX3x_ehtfbbQ" >
 
     </com.google.android.maps.MapView>
 
