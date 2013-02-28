@@ -79,7 +79,7 @@ public class MainActivity extends Activity implements Runnable, SensorEventListe
 			AssetManager assets = getAssets();
 			InputStream is;
 			try {
-				is = assets.open("imagenes/pajaros/birdr.png");
+				is = assets.open("android.png");
 				Bitmap android = BitmapFactory.decodeStream(is);
 				c.drawBitmap(android, 0, 0, new Paint());
 			} catch (IOException e) {
