@@ -1,22 +1,32 @@
 package com.atos.android.p31;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends Activity implements SensorEventListener {
+public class MainActivity extends Activity implements Runnable, SensorEventListener {
 	
 	private SensorManager manager;
 	private Sensor acelerometro;
+	private SurfaceView pantalla;
 	
 	private float vx = 0;
 	private float vy = 0;
@@ -42,6 +52,42 @@ public class MainActivity extends Activity implements SensorEventListener {
 		}
 		
 		acelerometro = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		
+		Thread t = new Thread(this);
+		t.start();
+		
+		pantalla = (SurfaceView) findViewById(R.id.pantalla); 
+	}
+	
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(40);
+			} catch (Exception e) {
+				// No hace nada
+			}
+			
+			SurfaceHolder holder = pantalla.getHolder();
+			Canvas c = holder.lockCanvas();
+			if (c == null) {
+				continue;
+			}
+			
+			// Borrar la situacion anterior
+			c.drawRGB(0, 0, 0);
+			
+			AssetManager assets = getAssets();
+			InputStream is;
+			try {
+				is = assets.open("imagenes/pajaros/birdr.png");
+				Bitmap android = BitmapFactory.decodeStream(is);
+				c.drawBitmap(android, 0, 0, new Paint());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			}
+			
+			holder.unlockCanvasAndPost(c);
+		}
 	}
 
 	

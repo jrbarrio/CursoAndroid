@@ -8,12 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <com.atos.android.p31.Lienzo
-        android:id="@+id/lienzo1"
+    <SurfaceView
+        android:id="@+id/pantalla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="138dp" />
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
