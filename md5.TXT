@@ -1,0 +1,16 @@
+16:98:BC:C9:3A:D1:42:C3:41:0A:7D:3C:2C:FC:26:B5
+
+Tu clave es:
+0bDUYQeFQ7tMbXS0R6V-RomSayHyX3x_ehtfbbQ
+
+Esta clave es válida para todas las aplicaciones firmadas con el certificado cuya huella dactilar sea:
+16:98:BC:C9:3A:D1:42:C3:41:0A:7D:3C:2C:FC:26:B5
+
+Incluimos un diseño xml de ejemplo para que puedas iniciarte por los senderos de la creación de mapas:
+<com.google.android.maps.MapView
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ android:apiKey="0bDUYQeFQ7tMbXS0R6V-RomSayHyX3x_ehtfbbQ"
+/>
+            
+Consulta la documentación del API para obtener más información.
